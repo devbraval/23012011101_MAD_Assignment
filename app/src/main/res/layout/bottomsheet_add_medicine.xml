@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_bg">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <EditText
+                android:id="@+id/etMedicineName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medicine Name" />
+
+            <EditText
+                android:id="@+id/etPreBP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pre BP (e.g. 120/80)" />
+
+            <EditText
+                android:id="@+id/etPreOxygen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pre Oxygen (e.g. 96%)" />
+
+            <EditText
+                android:id="@+id/etPrePulse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pre Pulse / Sugar" />
+
+            <EditText
+                android:id="@+id/etTotalTablets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total Tablets"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/etPerDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Doses per day"
+                android:inputType="number" />
+
+            <TimePicker
+                android:id="@+id/timePickerMedicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner" />
+
+            <CheckBox
+                android:id="@+id/cbEmptyStomach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empty stomach?" />
+
+            <Button
+                android:id="@+id/btnSaveMedicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save and Set Alarm"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

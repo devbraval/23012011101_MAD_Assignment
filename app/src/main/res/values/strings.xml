@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MadiAssist</string>
+    <string name="login_success">Login successful</string>
+    <string name="login_fail">Invalid email or password</string>
+    <string name="save_and_set">Save &amp; Set Alarms</string>
+    <string name="add_medicine">Add Medicine</string>
+    <string name="post_course_check">Post-course Check</string>
+    <string name="summary">Summary</string>
+</resources>

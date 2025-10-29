@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="disease_types">
+        <item>Viral</item>
+        <item>Diabetes</item>
+        <item>BP</item>
+        <item>Heart Related</item>
+        <item>Oxygen Related</item>
+    </string-array>
+</resources>
+

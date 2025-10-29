@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.a23012011101_mad_assignment1">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_ALARM" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/mediassist_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/mediassist_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MadiAssist">
+
+        <activity android:name=".AddMedicineActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SummaryActivity" />
+        <activity android:name=".AfterCourseActivity" />
+        <activity android:name=".DashboardActivity" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Alarm Service -->
+        <service
+            android:name=".AlarmService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback"
+            tools:ignore="ForegroundServicePermission" />
+
+        <!-- Broadcast Receiver -->
+        <receiver android:name=".AlarmBroadcastReceiver" />
+
+    </application>
+
+</manifest>
