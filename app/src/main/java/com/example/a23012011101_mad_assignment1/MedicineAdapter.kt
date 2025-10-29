@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a23012011101_mad_assignment1.models.Medicine
+import com.example.a23012011101_mad_assignment1.model.Medicine
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

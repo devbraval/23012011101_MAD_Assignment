@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.a23012011101_mad_assignment1">
 
-    <!-- Permissions -->
+
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_ALARM" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
@@ -32,16 +31,13 @@
             </intent-filter>
         </activity>
 
-        <!-- Alarm Service -->
         <service
             android:name=".AlarmService"
             android:exported="false"
-            android:foregroundServiceType="mediaPlayback"
-            tools:ignore="ForegroundServicePermission" />
+            android:foregroundServiceType="mediaPlayback" />
 
-        <!-- Broadcast Receiver -->
+
         <receiver android:name=".AlarmBroadcastReceiver" />
-
     </application>
 
 </manifest>

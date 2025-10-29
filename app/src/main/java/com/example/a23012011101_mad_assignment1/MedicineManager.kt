@@ -1,6 +1,6 @@
 package com.example.a23012011101_mad_assignment1
 
-import com.example.a23012011101_mad_assignment1.models.Medicine
+import com.example.a23012011101_mad_assignment1.model.Medicine
 import java.util.concurrent.atomic.AtomicLong
 
 object MedicineManager {

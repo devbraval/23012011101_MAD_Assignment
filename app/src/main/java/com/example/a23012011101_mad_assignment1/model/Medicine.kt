@@ -1,4 +1,4 @@
-package com.example.a23012011101_mad_assignment1.models
+package com.example.a23012011101_mad_assignment1.model
 
 data class Medicine(
     val id: Long,

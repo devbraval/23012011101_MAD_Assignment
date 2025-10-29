@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.a23012011101_mad_assignment1.models.Medicine
+import com.example.a23012011101_mad_assignment1.model.Medicine
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,11 +19,9 @@ class SummaryActivity : AppCompatActivity() {
         val medicines: List<Medicine> = MedicineManager.all()
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
 
-        // ✅ If no medicines are available
         if (medicines.isEmpty()) {
             addText(container, "No medicines added.")
         } else {
-            // ✅ Display each medicine details
             medicines.forEach { medicine ->
                 val doseTimes = if (medicine.doseTimes.isNotEmpty()) {
                     medicine.doseTimes.joinToString(", ") { timeFormat.format(Date(it)) }
@@ -46,7 +44,6 @@ class SummaryActivity : AppCompatActivity() {
             }
         }
 
-        // ✅ Display Post-course Vitals
         if (PostCourseStore.weight != null || PostCourseStore.bp != null || PostCourseStore.oxygen != null) {
             addHeader(container, "Post-course Vitals")
             val vitals = """
@@ -58,7 +55,7 @@ class SummaryActivity : AppCompatActivity() {
         }
     }
 
-    // 🔹 Helper function to add normal text
+
     private fun addText(container: LinearLayout, text: String) {
         val tv = TextView(this)
         tv.text = text
@@ -66,7 +63,7 @@ class SummaryActivity : AppCompatActivity() {
         container.addView(tv)
     }
 
-    // 🔹 Helper function to add section headers
+
     private fun addHeader(container: LinearLayout, title: String) {
         val tv = TextView(this)
         tv.text = "\n$title"

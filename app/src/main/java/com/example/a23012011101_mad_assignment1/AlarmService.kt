@@ -9,7 +9,9 @@ import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
 
@@ -20,7 +22,6 @@ class AlarmService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         try {
-            // ✅ Create Notification Channel (Android 8+)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
                     CHANNEL_ID,
@@ -31,7 +32,6 @@ class AlarmService : Service() {
                 manager.createNotificationChannel(channel)
             }
 
-            // ✅ Foreground Notification (prevents service crash)
             val notification = NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Medicine Reminder")
                 .setContentText("Alarm is ringing...")
@@ -41,7 +41,6 @@ class AlarmService : Service() {
 
             startForeground(101, notification)
 
-            // ✅ Play alarm sound
             if (mediaPlayer == null) {
                 val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
                 val audioAttributes = AudioAttributes.Builder()
@@ -52,8 +51,6 @@ class AlarmService : Service() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     val focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
                         .setAudioAttributes(audioAttributes)
-                        .setAcceptsDelayedFocusGain(true)
-                        .setWillPauseWhenDucked(false)
                         .build()
                     audioManager.requestAudioFocus(focusRequest)
                 } else {
@@ -65,20 +62,27 @@ class AlarmService : Service() {
                     )
                 }
 
-                // 🔔 This section loads and plays your alarm sound from res/raw/alarm.mp3
                 mediaPlayer = MediaPlayer().apply {
-                    val afd = resources.openRawResourceFd(R.raw.alarm)  // ⬅️ sound file here
+                    val afd = resources.openRawResourceFd(R.raw.alarm)
                     setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
                     afd.close()
                     setAudioAttributes(audioAttributes)
-                    isLooping = true
+                    isLooping = false
                     prepare()
                     start()
+
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        if (isPlaying) {
+                            stop()
+                            release()
+                        }
+                        stopSelf()
+                    }, 30000)
                 }
             }
 
         } catch (e: Exception) {
-            Log.e("AlarmService", "Error: ${e.message}")
+            Log.e("AlarmService", "Error playing alarm: ${e.message}")
         }
 
         return START_STICKY

@@ -17,18 +17,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // ✅ Handle window insets for edge-to-edge display
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // ✅ Initialize RecyclerView
+
         recyclerView = findViewById(R.id.medicineRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // ✅ Adapter setup with delete action
         adapter = MedicineAdapter { medId ->
             AlarmHelper.cancelAlarms(this, medId)
             MedicineManager.remove(medId)
@@ -38,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         adapter.submitList(MedicineManager.all().toList())
 
-        // ✅ Floating Action Button to add new medicine
         val fab: FloatingActionButton = findViewById(R.id.fabAddMedicine)
         fab.setOnClickListener {
             val dialog = AddMedicineDialog()

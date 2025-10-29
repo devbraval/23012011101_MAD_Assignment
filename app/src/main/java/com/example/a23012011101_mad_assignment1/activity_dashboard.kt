@@ -8,7 +8,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class DashboardActivity : AppCompatActivity() {
 
-    // make adapter accessible from dialog refresh
     lateinit var adapter: MedicineAdapter
     private lateinit var recyclerView: RecyclerView
 

@@ -5,7 +5,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.a23012011101_mad_assignment1.models.Medicine
+import com.example.a23012011101_mad_assignment1.model.Medicine
 
 class AddMedicineActivity : AppCompatActivity() {
 
@@ -18,7 +18,6 @@ class AddMedicineActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_medicine)
 
-        // Bind views
         nameInput = findViewById(R.id.medicineName)
         totalTabletsInput = findViewById(R.id.totalTablets)
         perDayInput = findViewById(R.id.dosesPerDay)
@@ -34,7 +33,6 @@ class AddMedicineActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Generate unique ID and theId using MedicineManager
             val newId = MedicineManager.nextId()
             val newTheId = MedicineManager.nextTheId(newId)
 
@@ -47,10 +45,10 @@ class AddMedicineActivity : AppCompatActivity() {
                 perDay = perDay,
                 remainingTablets = totalTablets,
                 emptyStomach = false,
-                doseTimes = listOf() // Empty for now
+                doseTimes = listOf()
             )
 
-            // Add medicine to manager
+
             MedicineManager.add(medicine)
 
             Toast.makeText(this, "Medicine Saved!", Toast.LENGTH_SHORT).show()

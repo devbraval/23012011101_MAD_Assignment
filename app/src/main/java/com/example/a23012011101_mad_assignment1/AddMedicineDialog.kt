@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.*
-import com.example.a23012011101_mad_assignment1.models.Medicine
+import com.example.a23012011101_mad_assignment1.model.Medicine
 import com.example.a23012011101_mad_assignment1.utils.TimeUtils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -72,7 +72,6 @@ class AddMedicineDialog : BottomSheetDialogFragment() {
 
             Toast.makeText(requireContext(), "Medicine saved & Alarm set!", Toast.LENGTH_SHORT).show()
 
-            // Tell Dashboard to refresh (we will rely on onResume too, but this helps immediate refresh)
             (activity as? DashboardActivity)?.let {
                 it.runOnUiThread {
                     it.adapter.submitList(MedicineManager.all().toList())
